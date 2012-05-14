@@ -49,7 +49,8 @@ set currentUserNumber to 0
 property dryRun : true
 
 --Used to store the file location of the iBooks "App Page Shortcut". Updated dynamically on run to reference a child folder of the .app bundle (Yes, I know this isn't kosher)
-property ibooksLinkLocation : "OSX_DATA:Users:greg:Desktop:iBooks Link.inetloc"
+-- AF 2012-05-14 Open location instead of .inetloc
+property ibooksLinkLocation : "itms://itunes.apple.com/us/app/ibooks/id364709193?mt=8"
 
 --Master delay timer for slowing the script down at specified sections. Usefull for tweaking the entire script's speed
 property masterDelay : 1
@@ -137,10 +138,15 @@ on MainMagic(userDroppedFile, droppedFile)
 		if scriptAction is "Continue" then
 			--Split out header information from each of the columns
 			set headers to {}
+			
 			repeat with headerRemoverLoopCounter from 1 to (count of items in usersFile)
+				
 				set headers to headers & "" --Add an empty item to headers
+				
 				set item headerRemoverLoopCounter of headers to item 1 of item headerRemoverLoopCounter of usersFile --Save the header from the column
-				set item headerRemoverLoopCounter of usersFile to (items 2 thru (count of items in usersFile) of item headerRemoverLoopCounter of usersFile) --Remove the header from the column
+				
+				set item headerRemoverLoopCounter of usersFile to (items 2 thru (count of items in item headerRemoverLoopCounter of usersFile) of item headerRemoverLoopCounter of usersFile) --Remove the header from the column
+				
 			end repeat
 			
 			set userCount to (count of items in item 1 of usersFile) --Counts the number of users
@@ -303,7 +309,7 @@ on loadUsersFile(userDroppedFile, chosenFile)
 				if missingColumnResolution is "Manually Locate Column" then
 					--Create a list of the columns to choose from, complete with a number at the beginning of each item in the list 
 					set columnList to {}
-					repeat with createColumnListLoopCounter from 1 to (count of items in readFile) --Each loop will create an entry in the list of choises corresponding to the first row of a column in the original source file
+					repeat with createColumnListLoopCounter from 1 to (count of items in readFile) --Each loop will create an entry in the list of choices corresponding to the first row of a column in the original source file
 						set columnList to columnList & ((createColumnListLoopCounter as text) & " " & item 1 of item createColumnListLoopCounter of readFile) --Dynamically add an incremented number and space to the beginning of each item in the list of choices, and then add the contents of the first row of the column chosen for this loop
 					end repeat
 					
@@ -662,9 +668,8 @@ end GetItunesStatusUntillLcd
 on installIbooks()
 	if scriptAction is "Continue" then --This is to make sure an abort hasn't been thrown
 		
-		tell application "Finder"
-			open file ibooksLinkLocation
-		end tell
+		-- AF 2012-05-14 Open location instead of .inetloc
+		tell application "iTunes" to open location ibooksLinkLocation
 		
 		set pageVerification to verifyPage("iBooks", 2, 0, netDelay) --Looking for "iBooks", in the second element, on a page with an element count of 96, with a timeout of 5
 		
