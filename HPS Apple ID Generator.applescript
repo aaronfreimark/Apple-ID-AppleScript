@@ -80,6 +80,7 @@ property supportedItunesVersions : {"10.6"}
 	Address Zip
 	Phone Area Code
 	Phone Number
+	Account Status
 *)
 
 --Properties for storing possible headers to check the source CSV file for. Source file will be checked for each of the items to locate the correct columns
