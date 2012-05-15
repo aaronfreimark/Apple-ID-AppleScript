@@ -62,13 +62,17 @@ property netDelay : 30
 property processDelay : 1
 
 --Used to store supported iTunes versions
-property supportedItunesVersions : {"10.6", "10.6.1"}
+property supportedItunesVersions : {"10.6.1"}
 
 (*
 	Email
 	Password
-	Secret Question
-	Secret Answer
+	Secret Question 1
+	Secret Answer 1
+	Secret Question 2
+	Secret Answer 2
+	Secret Question 3
+	Secret Answer 3
 	Month Of Birth
 	Day Of Birth
 	Year Of Birth
@@ -86,8 +90,12 @@ property supportedItunesVersions : {"10.6", "10.6.1"}
 --Properties for storing possible headers to check the source CSV file for. Source file will be checked for each of the items to locate the correct columns
 property emailHeaders : {"Email", "Email Address"}
 property passwordHeaders : {"Password", "Pass"}
-property secretQuestionHeaders : {"Secret Question", "Question"}
-property secretAnswerHeaders : {"Secret Answer", "Answer"}
+property secretQuestion1Headers : {"Secret Question 1"}
+property secretAnswer1Headers : {"Secret Answer 1"}
+property secretQuestion2Headers : {"Secret Question 2"}
+property secretAnswer2Headers : {"Secret Answer 2"}
+property secretQuestion3Headers : {"Secret Question 3"}
+property secretAnswer3Headers : {"Secret Answer 3"}
 property monthOfBirthHeaders : {"Month", "Birth Month", "Month of Birth"}
 property dayOfBirthHeaders : {"Day", "Birth Day", "Day Of Birth"}
 property yearOfBirthHeaders : {"Year", "Birth Year", "Year Of Birth"}
@@ -156,21 +164,25 @@ on MainMagic(userDroppedFile, droppedFile)
 			set appleIdEmailColumnContents to item 1 of usersFile
 			set appleIdPasswordColumnContents to item 2 of usersFile
 			
-			set appleIdSecretQuestionColumnContents to item 3 of usersFile
-			set appleIdSecretAnswerColumnContents to item 4 of usersFile
-			set monthOfBirthColumnContents to item 5 of usersFile
-			set dayOfBirthColumnContents to item 6 of usersFile
-			set yearOfBirthColumnContents to item 7 of usersFile
+			set appleIdSecretQuestion1ColumnContents to item 3 of usersFile
+			set appleIdSecretAnswer1ColumnContents to item 4 of usersFile
+			set appleIdSecretQuestion2ColumnContents to item 5 of usersFile
+			set appleIdSecretAnswer2ColumnContents to item 6 of usersFile
+			set appleIdSecretQuestion3ColumnContents to item 7 of usersFile
+			set appleIdSecretAnswer3ColumnContents to item 8 of usersFile
+			set monthOfBirthColumnContents to item 9 of usersFile
+			set dayOfBirthColumnContents to item 10 of usersFile
+			set yearOfBirthColumnContents to item 11 of usersFile
 			
-			set userFirstNameColumnContents to item 8 of usersFile
-			set userLastNameColumnContents to item 9 of usersFile
-			set addressStreetColumnContents to item 10 of usersFile
-			set addressCityColumnContents to item 11 of usersFile
-			set addressStateColumnContents to item 12 of usersFile
-			set addressZipColumnContents to item 13 of usersFile
-			set phoneAreaCodeColumnContents to item 14 of usersFile
-			set phoneNumberColumnContents to item 15 of usersFile
-			set accountStatusColumnContents to item 16 of usersFile
+			set userFirstNameColumnContents to item 12 of usersFile
+			set userLastNameColumnContents to item 13 of usersFile
+			set addressStreetColumnContents to item 14 of usersFile
+			set addressCityColumnContents to item 15 of usersFile
+			set addressStateColumnContents to item 16 of usersFile
+			set addressZipColumnContents to item 17 of usersFile
+			set phoneAreaCodeColumnContents to item 18 of usersFile
+			set phoneNumberColumnContents to item 19 of usersFile
+			set accountStatusColumnContents to item 20 of usersFile
 			
 			--PREP-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------PREP--
 			
@@ -192,8 +204,12 @@ on MainMagic(userDroppedFile, droppedFile)
 					set appleIdEmail to item loopCounter of appleIdEmailColumnContents
 					set appleIdPassword to item loopCounter of appleIdPasswordColumnContents
 					
-					set appleIdSecretQuestion to item loopCounter of appleIdSecretQuestionColumnContents
-					set appleIdSecretAnswer to item loopCounter of appleIdSecretAnswerColumnContents
+					set appleIdSecretQuestion1 to item loopCounter of appleIdSecretQuestion1ColumnContents
+					set appleIdSecretAnswer1 to item loopCounter of appleIdSecretAnswer1ColumnContents
+					set appleIdSecretQuestion2 to item loopCounter of appleIdSecretQuestion2ColumnContents
+					set appleIdSecretAnswer2 to item loopCounter of appleIdSecretAnswer2ColumnContents
+					set appleIdSecretQuestion3 to item loopCounter of appleIdSecretQuestion3ColumnContents
+					set appleIdSecretAnswer3 to item loopCounter of appleIdSecretAnswer3ColumnContents
 					set monthOfBirth to item loopCounter of monthOfBirthColumnContents
 					set dayOfBirth to item loopCounter of dayOfBirthColumnContents
 					set yearOfBirth to item loopCounter of yearOfBirthColumnContents
@@ -230,7 +246,7 @@ on MainMagic(userDroppedFile, droppedFile)
 					CheckForErrors() ------------------------------------------------------------------------------------------------------------------------------------------------------------------Checks for errors that may have been thrown by previous handler
 					if scriptAction is "Abort" then exit repeat -----------------------------------------------------------------------------------------------------------------------------------If an error was detected and the user chose to abort, then end the script
 					
-					ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, appleIdSecretAnswer, monthOfBirth, dayOfBirth, yearOfBirth) ----------------Fills the first page of apple ID details. Birth Month is full text, like "January". Birth Day and Birth Year are numeric. Birth Year is 4 digit
+					ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion1, appleIdSecretAnswer1, appleIdSecretQuestion2, appleIdSecretAnswer2, appleIdSecretQuestion3, appleIdSecretAnswer3, monthOfBirth, dayOfBirth, yearOfBirth) ----------------Fills the first page of apple ID details. Birth Month is full text, like "January". Birth Day and Birth Year are numeric. Birth Year is 4 digit
 					CheckForErrors() ------------------------------------------------------------------------------------------------------------------------------------------------------------------Checks for errors that may have been thrown by previous handler
 					if scriptAction is "Abort" then exit repeat -----------------------------------------------------------------------------------------------------------------------------------If an error was detected and the user chose to abort, then end the script
 					
@@ -255,9 +271,9 @@ on MainMagic(userDroppedFile, droppedFile)
 				
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------Display dialog boxes that confirm the exit status of the script
 				
-				if scriptAction is "Abort" then display dialog "Script was aborted"
-				if scriptAction is "Stop" then display dialog "Dry run completed"
-				if scriptAction is "Continue" then display dialog "Script Completed Successfully"
+				if scriptAction is "Abort" then display dialog "Script was aborted" buttons {"OK"}
+				if scriptAction is "Stop" then display dialog "Dry run completed" buttons {"OK"}
+				if scriptAction is "Continue" then display dialog "Script Completed Successfully" buttons {"OK"}
 				
 				
 				--Fix for multiple positive outcomes
@@ -285,7 +301,7 @@ on loadUsersFile(userDroppedFile, chosenFile)
 	set readFile to ReadCsvFile(chosenFile) --Open the CSV file and read its raw contents
 	set readFile to ParseCsvFile(readFile) --Parse the values into a list of lists
 	
-	set listOfColumnsToFind to {"Email", "Password", "Secret Question", "Secret Answer", "Month Of Birth", "Day Of Birth", "Year Of Birth", "First Name", "Last Name", "Address Street", "Address City", "Address State", "Address Zip", "Phone Area Code", "Phone Number", "Account Status"}
+	set listOfColumnsToFind to {"Email", "Password", "Secret Question 1", "Secret Answer 1", "Secret Question 2", "Secret Answer 2", "Secret Question 3", "Secret Answer 3", "Month Of Birth", "Day Of Birth", "Year Of Birth", "First Name", "Last Name", "Address Street", "Address City", "Address State", "Address Zip", "Phone Area Code", "Phone Number", "Account Status"}
 	
 	--Locate the columns in the file
 	set findResults to {}
@@ -357,13 +373,33 @@ on findColumn(columnToFind, fileContents)
 	end if
 	
 	--BEGIN FIND SECRET QUESTION																				BEGIN FIND SECRET QUESTION
-	if columnToFind is "Secret Question" then
-		return findInList(secretQuestionHeaders, fileContents)
+	if columnToFind is "Secret Question 1" then
+		return findInList(secretQuestion1Headers, fileContents)
 	end if
 	
 	--BEGIN FIND SECRET ANSWER																					BEGIN FIND SECRET ANSWER
-	if columnToFind is "Secret Answer" then
-		return findInList(secretAnswerHeaders, fileContents)
+	if columnToFind is "Secret Answer 1" then
+		return findInList(secretAnswer1Headers, fileContents)
+	end if
+	
+	--BEGIN FIND SECRET QUESTION 2																				BEGIN FIND SECRET QUESTION 2
+	if columnToFind is "Secret Question 2" then
+		return findInList(secretQuestion2Headers, fileContents)
+	end if
+	
+	--BEGIN FIND SECRET ANSWER 2																					BEGIN FIND SECRET ANSWER 2
+	if columnToFind is "Secret Answer 2" then
+		return findInList(secretAnswer2Headers, fileContents)
+	end if
+	
+	--BEGIN FIND SECRET QUESTION  3																				BEGIN FIND SECRET QUESTION 3
+	if columnToFind is "Secret Question 3" then
+		return findInList(secretQuestion3Headers, fileContents)
+	end if
+	
+	--BEGIN FIND SECRET ANSWER 3																					BEGIN FIND SECRET ANSWER 3
+	if columnToFind is "Secret Answer 3" then
+		return findInList(secretAnswer3Headers, fileContents)
 	end if
 	
 	--BEGIN FIND BIRTH MONTH 																					BEGIN FIND BIRTH MONTH
@@ -786,8 +822,76 @@ on AgreeToTerms()
 end AgreeToTerms
 
 -----------------------------------------
+on theForm()
+	tell application "System Events"
+		set theForm to UI element 1 of scroll area 3 of window 1 of application process "iTunes"
+		return theForm
+	end tell
+end theForm
 
-on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, appleIdSecretAnswer, userBirthMonth, userBirthDay, userBirthYear)
+-----------------------------------------
+
+on FillInField(fieldName, theField, theValue)
+	tell application "System Events"
+		try
+			set focused of theField to true
+			set value of theField to theValue
+			if value of theField is not theValue then
+				set errorList to errorList & ("Unable to fill " & fieldName & ".")
+			end if
+		on error
+			set errorList to errorList & ("Unable to fill " & fieldName & ". ")
+		end try
+	end tell
+end FillInField
+
+on FillInKeystroke(fieldName, theField, theValue)
+	tell application "System Events"
+		set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performing keystroke event
+		try
+			set focused of theField to true
+			keystroke theValue
+		on error
+			set errorList to errorList & ("Unable to fill " & fieldName & ". ")
+		end try
+	end tell
+end FillInKeystroke
+
+on FillInPopup(fieldName, theField, theValue, maximum)
+	tell application "System Events"
+		set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performing keystroke event
+		try
+			-- iTunes doesn't allow direct access to popup menus. So we step through instead.
+			repeat with loopCounter from 1 to maximum
+				if value of theField is theValue then exit repeat
+				
+				set focused of theField to true
+				delay 0.1
+				keystroke " " -- Space to open the menu
+				keystroke (key code 125) -- down arrow
+				keystroke " " -- Space to close the menu
+			end repeat
+			
+			if value of theField is not theValue then set errorList to errorList & ("Unable to fill " & fieldName & ". ")
+		on error
+			set errorList to errorList & ("Unable to fill " & fieldName & ". ")
+		end try
+	end tell
+end FillInPopup
+
+on ClickCheckbox(fieldName, theField)
+	tell application "System Events"
+		try
+			click theField
+		on error
+			set errorList to errorList & ("Unable to fill " & fieldName & ". ")
+		end try
+	end tell
+end ClickCheckbox
+
+-----------------------------------------
+
+on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion1, appleIdSecretAnswer1, appleIdSecretQuestion2, appleIdSecretAnswer2, appleIdSecretQuestion3, appleIdSecretAnswer3, userBirthMonth, userBirthDay, userBirthYear)
 	if scriptAction is "Continue" then --This is to make sure an abort hasn't been thrown
 		
 		set pageVerification to verifyPage("Provide Apple ID Details", 2, 0, netDelay)
@@ -796,108 +900,27 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 			tell application "System Events"
 				set theForm to UI element 1 of scroll area 3 of window 1 of application process "iTunes"
 				-----------
-				try
-					set focused of text field 1 of group 3 of theForm to true
-					set value of text field 1 of group 3 of theForm to appleIdEmail --Set email address
-					if value of text field 1 of group 3 of theForm is not appleIdEmail then
-						set errorList to errorList & "Unable to fill ''Email'' field."
-					end if
-				on error
-					set errorList to errorList & "Unable to fill ''Email'' field."
-				end try
+				tell me to FillInField("Email", text field 1 of group 3 of theForm, appleIdEmail)
 				-----------
-				try
-					set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-					set focused of text field 1 of group 2 of group 4 of theForm to true
-					keystroke appleIdPassword --Set Password. Must use keystroke instead of "set value" because page checks for keyboard input for this field
-					--Password field cannot be verified because it is a secure text field
-				on error
-					set errorList to errorList & "Unable to fill ''Password'' field."
-				end try
+				tell me to FillInKeystroke("Password", text field 1 of group 2 of group 4 of theForm, appleIdPassword)
 				-----------
-				try
-					set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-					set focused of text field 1 of group 4 of group 4 of theForm to true
-					keystroke appleIdPassword --Confirm Password.  Must use keystroke instead of "set value" because page checks for keyboard input for this field
-					--Password Verification field cannot be verified because it is a secure text field
-				on error
-					set errorList to errorList & "Unable to fill ''Password Verification'' field."
-				end try
+				tell me to FillInKeystroke("Password Verification", text field 1 of group 4 of group 4 of theForm, appleIdPassword)
 				-----------
-				try
-					set focused of pop up button 1 of group 1 of group 7 of theForm to true
-					set value of text field 1 of group 6 of theForm to appleIdSecretQuestion --Set Secret Question
-					if value of text field 1 of group 6 of theForm is not appleIdSecretQuestion then
-						set errorList to errorList & "Unable to fill ''Secret Question'' field."
-					end if
-				on error
-					set errorList to errorList & "Unable to fill ''Secret Question'' field."
-				end try
+				tell me to FillInPopup("Security Question 1", pop up button 1 of group 1 of group 7 of theForm, appleIdSecretQuestion1, 5)
+				tell me to FillInField("Security Answer 1", text field 1 of group 2 of group 7 of theForm, appleIdSecretAnswer1)
 				-----------
-				try
-					set focused of text field 1 of group 1 of group 7 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
-					set value of text field 1 of group 1 of group 7 of theForm to appleIdSecretAnswer --Set Secret Answer
-					if value of text field 1 of group 1 of group 7 of theForm is not appleIdSecretAnswer then
-						set errorList to errorList & "Unable to fill ''Secret Answer'' field."
-					end if
-				on error
-					set errorList to errorList & "Unable to fill ''Secret Answer'' field."
-				end try
+				tell me to FillInPopup("Security Question 2", pop up button 1 of group 1 of group 8 of theForm, appleIdSecretQuestion2, 5)
+				tell me to FillInField("Security Answer 2", text field 1 of group 2 of group 8 of theForm, appleIdSecretAnswer2)
 				-----------
-				try
-					set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-					set focused of pop up button 1 of group 1 of group 9 of theForm to true
-					delay 0.5
-					keystroke userBirthMonth
-					if value of pop up button 1 of group 1 of group 9 of theForm is not userBirthMonth then
-						set errorList to errorList & "Unable to set ''Month''."
-					end if
-				on error
-					set errorList to errorList & "Unable to set ''Month''."
-				end try
+				tell me to FillInPopup("Security Question 3", pop up button 1 of group 1 of group 9 of theForm, appleIdSecretQuestion3, 5)
+				tell me to FillInField("Security Answer 3", text field 1 of group 2 of group 9 of theForm, appleIdSecretAnswer3)
 				-----------
-				try
-					set birthDayField to ""
-					set birthDaySetAttempt to 0
-					repeat until birthDayField is userBirthDay --Repeat because Apple, in their infinite wisdom, decided on some bizzarre method for picking the value with keystroke
-						
-						set birthDaySetAttempt to birthDaySetAttempt + 1 --Count how many times we have tried to set the birth day
-						if birthDaySetAttempt is greater than 31 then --Since there are a maximum of 31 days in a month, if we have tried more than 31 times to set the day then we should have tried every possibility
-							errorList to errorList & "Unable to set ''Day'' field."
-							exit repeat --Break out of day setting loop
-						end if
-						
-						set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-						set focused of pop up button 1 of group 2 of group 9 of theForm to true
-						delay 0.5
-						keystroke userBirthDay
-						set birthDayField to value of pop up button 1 of group 2 of group 9 of theForm
-					end repeat
-				on error
-					errorList to errorList & "Unable to set ''Day'' field."
-				end try
+				tell me to FillInPopup("Month", pop up button 1 of group 1 of group 14 of theForm, userBirthMonth, 12)
+				tell me to FillInPopup("Day", pop up button 1 of group 2 of group 14 of theForm, userBirthDay, 31)
+				tell me to FillInField("Year", text field 1 of group 3 of group 14 of theForm, userBirthYear)
 				-----------
-				try
-					set focused of text field 1 of group 3 of group 9 of theForm to true
-					set value of text field 1 of group 3 of group 9 of theForm to userBirthYear --Type year
-					if value of text field 1 of group 3 of group 9 of theForm is not userBirthYear then
-						set errorList to errorList & "Unable to set ''Year'' field."
-					end if
-				on error
-					set errorList to errorList & "Unable to set ''Year'' field."
-				end try
-				-----------
-				try
-					click checkbox 1 of group 11 of theForm --Uncheck psuedo-spam
-				on error
-					set errorList to errorList & "Unable to uncheck ''New Releases'' email option box."
-				end try
-				-----------
-				try
-					click checkbox 1 of group 12 of theForm --Uncheck psuedo-spam
-				on error
-					set errorList to errorList & "Unable to uncheck ''News and Special Offers'' email option box."
-				end try
+				tell me to ClickCheckbox("New Releases", checkbox 1 of group 16 of theForm)
+				tell me to ClickCheckbox("News and Special Offers", checkbox 1 of group 17 of theForm)
 				-----------
 				
 				my CheckForErrors() --Check for errors before continuing to the next page
