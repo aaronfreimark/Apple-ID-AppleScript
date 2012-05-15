@@ -93,11 +93,11 @@ property dayOfBirthHeaders : {"Day", "Birth Day", "Day Of Birth"}
 property yearOfBirthHeaders : {"Year", "Birth Year", "Year Of Birth"}
 property firstNameHeaders : {"First Name", "First", "fname"}
 property lastNameHeaders : {"Last Name", "Last", "lname"}
-property addressStreetHeaders : {"Street", "Street Address"}
-property addressCityHeaders : {"City"}
-property addressStateHeaders : {"State"}
-property addressZipHeaders : {"Zip Code", "Zip"}
-property phoneAreaCodeHeaders : {"Area Code"}
+property addressStreetHeaders : {"Street", "Street Address", "Address Street"}
+property addressCityHeaders : {"City", "Address City"}
+property addressStateHeaders : {"State", "Address State"}
+property addressZipHeaders : {"Zip Code", "Zip", "Address Zip"}
+property phoneAreaCodeHeaders : {"Area Code", "Phone Area Code"}
 property phoneNumberHeaders : {"Phone Number", "Phone"}
 property accountStatusHeaders : {"Account Status"} --Used to keep track of what acounts have been created
 
