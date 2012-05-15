@@ -271,6 +271,7 @@ on MainMagic(userDroppedFile, droppedFile)
 				
 				--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------Display dialog boxes that confirm the exit status of the script
 				
+				activate
 				if scriptAction is "Abort" then display dialog "Script was aborted" buttons {"OK"}
 				if scriptAction is "Stop" then display dialog "Dry run completed" buttons {"OK"}
 				if scriptAction is "Continue" then display dialog "Script Completed Successfully" buttons {"OK"}
@@ -879,15 +880,15 @@ on FillInPopup(fieldName, theField, theValue, maximum)
 	end tell
 end FillInPopup
 
-on ClickCheckbox(fieldName, theField)
+on ClickThis(fieldName, theField)
 	tell application "System Events"
 		try
 			click theField
 		on error
-			set errorList to errorList & ("Unable to fill " & fieldName & ". ")
+			set errorList to errorList & ("Unable to click " & fieldName & ". ")
 		end try
 	end tell
-end ClickCheckbox
+end ClickThis
 
 -----------------------------------------
 
@@ -919,8 +920,8 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion1, 
 				tell me to FillInPopup("Day", pop up button 1 of group 2 of group 14 of theForm, userBirthDay, 31)
 				tell me to FillInField("Year", text field 1 of group 3 of group 14 of theForm, userBirthYear)
 				-----------
-				tell me to ClickCheckbox("New Releases", checkbox 1 of group 16 of theForm)
-				tell me to ClickCheckbox("News and Special Offers", checkbox 1 of group 17 of theForm)
+				tell me to ClickThis("New Releases", checkbox 1 of group 16 of theForm)
+				tell me to ClickThis("News and Special Offers", checkbox 1 of group 17 of theForm)
 				-----------
 				
 				my CheckForErrors() --Check for errors before continuing to the next page
@@ -933,11 +934,7 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion1, 
 				end if
 				
 				if scriptAction is "Continue" then
-					try
-						click button 3 of group 13 of theForm
-					on error
-						set errorList to errorList & "Unable to click ''Continue'' button."
-					end try
+					tell me to ClickThis("Continue Button", button "Continue" of group 18 of theForm)
 				end if
 			end tell
 		else --(If page didn't verify)
