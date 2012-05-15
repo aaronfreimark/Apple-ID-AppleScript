@@ -62,7 +62,7 @@ property netDelay : 30
 property processDelay : 1
 
 --Used to store supported iTunes versions
-property supportedItunesVersions : {"10.6"}
+property supportedItunesVersions : {"10.6", "10.6.1"}
 
 (*
 	Email
@@ -794,11 +794,12 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 		
 		if pageVerification is "Verified" then
 			tell application "System Events"
+				set theForm to UI element 1 of scroll area 3 of window 1 of application process "iTunes"
 				-----------
 				try
-					set focused of text field 1 of group 3 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
-					set value of text field 1 of group 3 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to appleIdEmail --Set email address
-					if value of text field 1 of group 3 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" is not appleIdEmail then
+					set focused of text field 1 of group 3 of theForm to true
+					set value of text field 1 of group 3 of theForm to appleIdEmail --Set email address
+					if value of text field 1 of group 3 of theForm is not appleIdEmail then
 						set errorList to errorList & "Unable to fill ''Email'' field."
 					end if
 				on error
@@ -807,7 +808,7 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 				-----------
 				try
 					set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-					set focused of text field 1 of group 2 of group 4 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
+					set focused of text field 1 of group 2 of group 4 of theForm to true
 					keystroke appleIdPassword --Set Password. Must use keystroke instead of "set value" because page checks for keyboard input for this field
 					--Password field cannot be verified because it is a secure text field
 				on error
@@ -816,7 +817,7 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 				-----------
 				try
 					set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-					set focused of text field 1 of group 4 of group 4 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
+					set focused of text field 1 of group 4 of group 4 of theForm to true
 					keystroke appleIdPassword --Confirm Password.  Must use keystroke instead of "set value" because page checks for keyboard input for this field
 					--Password Verification field cannot be verified because it is a secure text field
 				on error
@@ -824,9 +825,9 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 				end try
 				-----------
 				try
-					set focused of text field 1 of group 6 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
-					set value of text field 1 of group 6 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to appleIdSecretQuestion --Set Secret Question
-					if value of text field 1 of group 6 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" is not appleIdSecretQuestion then
+					set focused of pop up button 1 of group 1 of group 7 of theForm to true
+					set value of text field 1 of group 6 of theForm to appleIdSecretQuestion --Set Secret Question
+					if value of text field 1 of group 6 of theForm is not appleIdSecretQuestion then
 						set errorList to errorList & "Unable to fill ''Secret Question'' field."
 					end if
 				on error
@@ -835,8 +836,8 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 				-----------
 				try
 					set focused of text field 1 of group 1 of group 7 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
-					set value of text field 1 of group 1 of group 7 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to appleIdSecretAnswer --Set Secret Answer
-					if value of text field 1 of group 1 of group 7 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" is not appleIdSecretAnswer then
+					set value of text field 1 of group 1 of group 7 of theForm to appleIdSecretAnswer --Set Secret Answer
+					if value of text field 1 of group 1 of group 7 of theForm is not appleIdSecretAnswer then
 						set errorList to errorList & "Unable to fill ''Secret Answer'' field."
 					end if
 				on error
@@ -845,10 +846,10 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 				-----------
 				try
 					set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-					set focused of pop up button 1 of group 1 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
+					set focused of pop up button 1 of group 1 of group 9 of theForm to true
 					delay 0.5
 					keystroke userBirthMonth
-					if value of pop up button 1 of group 1 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" is not userBirthMonth then
+					if value of pop up button 1 of group 1 of group 9 of theForm is not userBirthMonth then
 						set errorList to errorList & "Unable to set ''Month''."
 					end if
 				on error
@@ -867,19 +868,19 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 						end if
 						
 						set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-						set focused of pop up button 1 of group 2 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
+						set focused of pop up button 1 of group 2 of group 9 of theForm to true
 						delay 0.5
 						keystroke userBirthDay
-						set birthDayField to value of pop up button 1 of group 2 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes"
+						set birthDayField to value of pop up button 1 of group 2 of group 9 of theForm
 					end repeat
 				on error
 					errorList to errorList & "Unable to set ''Day'' field."
 				end try
 				-----------
 				try
-					set focused of text field 1 of group 3 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
-					set value of text field 1 of group 3 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to userBirthYear --Type year
-					if value of text field 1 of group 3 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" is not userBirthYear then
+					set focused of text field 1 of group 3 of group 9 of theForm to true
+					set value of text field 1 of group 3 of group 9 of theForm to userBirthYear --Type year
+					if value of text field 1 of group 3 of group 9 of theForm is not userBirthYear then
 						set errorList to errorList & "Unable to set ''Year'' field."
 					end if
 				on error
@@ -887,13 +888,13 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 				end try
 				-----------
 				try
-					click checkbox 1 of group 11 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" --Uncheck psuedo-spam
+					click checkbox 1 of group 11 of theForm --Uncheck psuedo-spam
 				on error
 					set errorList to errorList & "Unable to uncheck ''New Releases'' email option box."
 				end try
 				-----------
 				try
-					click checkbox 1 of group 12 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" --Uncheck psuedo-spam
+					click checkbox 1 of group 12 of theForm --Uncheck psuedo-spam
 				on error
 					set errorList to errorList & "Unable to uncheck ''News and Special Offers'' email option box."
 				end try
@@ -910,7 +911,7 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion, a
 				
 				if scriptAction is "Continue" then
 					try
-						click button 3 of group 13 of UI element 1 of scroll area 3 of window 1 of application process "iTunes"
+						click button 3 of group 13 of theForm
 					on error
 						set errorList to errorList & "Unable to click ''Continue'' button."
 					end try
@@ -928,7 +929,7 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 		
 		if pageVerification is "Verified" then
 			tell application "System Events"
-				click button 1 of group 6 of list 1 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" --Click payment type "none"
+				click button 1 of group 6 of list 1 of theForm --Click payment type "none"
 			end tell
 		end if
 		
@@ -939,58 +940,58 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 		tell application "System Events"
 			try
 				set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-				set focused of pop up button 1 of group 1 of group 8 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
+				set focused of pop up button 1 of group 1 of group 8 of theForm to true
 				keystroke "Dr"
 			on error
 				set errorList to errorList & "Unable to set ''Title'' to ''Dr.''"
 			end try
 			-----------
 			try
-				set value of text field 1 of group 1 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to userFirstName
+				set value of text field 1 of group 1 of group 9 of theForm to userFirstName
 			on error
 				set errorList to errorList & "Unable to set ''First Name'' field to " & userFirstName
 			end try
 			-----------
 			try
-				set value of text field 1 of group 2 of group 9 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to userLastName
+				set value of text field 1 of group 2 of group 9 of theForm to userLastName
 			on error
 				set errorList to errorList & "Unable to set ''Last Name'' field to " & userLastName
 			end try
 			-----------
 			try
-				set value of text field 1 of group 1 of group 10 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to addressStreet
+				set value of text field 1 of group 1 of group 10 of theForm to addressStreet
 			on error
 				set errorList to errorList & "Unable to set ''Street Address'' field to " & addressStreet
 			end try
 			-----------
 			try
-				set value of text field 1 of group 1 of group 11 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to addressCity
+				set value of text field 1 of group 1 of group 11 of theForm to addressCity
 			on error
 				set errorList to errorList & "Unable to set ''City'' field to " & addressCity
 			end try
 			-----------
 			try
 				set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-				set focused of pop up button 1 of group 2 of group 11 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to true
+				set focused of pop up button 1 of group 2 of group 11 of theForm to true
 				keystroke addressState
 			on error
 				set errorList to errorList & "Unable to set ''State'' drop-down to " & addressState
 			end try
 			-----------
 			try
-				set value of text field 1 of group 3 of group 11 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to addressZip
+				set value of text field 1 of group 3 of group 11 of theForm to addressZip
 			on error
 				set errorList to errorList & "Unable to set ''Zip Code'' field to " & addressZip
 			end try
 			-----------
 			try
-				set value of text field 1 of group 1 of group 12 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to phoneAreaCode
+				set value of text field 1 of group 1 of group 12 of theForm to phoneAreaCode
 			on error
 				set errorList to errorList & "Unable to set ''Area Code'' field to " & phoneAreaCode
 			end try
 			-----------
 			try
-				set value of text field 1 of group 2 of group 12 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" to phoneNumber
+				set value of text field 1 of group 2 of group 12 of theForm to phoneNumber
 			on error
 				set errorList to errorList & "Unable to set ''Phone Number'' field to " & phoneNumber
 			end try
@@ -1008,7 +1009,7 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 			if dryRun is false then --Click the "Create Apple ID" button as long as we aren't in "Dry Run" mode
 				if scriptAction is "Continue" then --Continue as long as no errors occurred
 					try
-						click button 3 of group 14 of UI element 1 of scroll area 3 of window 1 of application process "iTunes" --Click button to create Apple ID
+						click button 3 of group 14 of theForm --Click button to create Apple ID
 					on error
 						set errorList to errorList & "Unable to click ''Create Apple ID'' button."
 					end try
