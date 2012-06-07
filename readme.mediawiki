@@ -1,0 +1,56 @@
+== Batch Apple ID Creator ==
+
+=== Purpose & Features ===
+
+Deploying a great quantity of iOS devices means creating a great quantity of Apple IDs. This script allows automated Apple ID creation from a spreadsheet. Apple IDs are created without a credit card, which is great for many deployments. There is a "dry run" feature to test the script without actually creating the Apple ID.
+
+=== Requirements ===
+
+* '''IMPORTANT''': Apple uses a velocity check to prevent too many Apple IDs from a single IP address. You must contact your Apple business representative to request that your IP address is whitelisted for a short time.
+* Being [http://developer.apple.com/applescript/ AppleScript], this runs only on Macs.
+* [http://www.apple.com/itunes/ iTunes 10.6.1] is currently required. Future versions may break the script.
+* [http://www.mactech.com/articles/mactech/Vol.21/21.06/UserInterfaceScripting/index.html UI Scripting] allows us to script otherwise non-scriptbale interfaces. Turn this on in System Preferences > Accessibility and check "Enable access for assistive devices."
+* Apple has [http://support.apple.com/kb/TS1728 strong password requirements]. Account creation will fail if the passwords are too weak.
+
+=== Instructions ===
+
+A template CSV file is included. Fill out all columns, keeping the column headers, and save as CSV. Then run the script.
+
+=== Security Questions ===
+
+As of iTunes 10.6.1 Apple has required three security questions. The Batch Apple ID Creator allows you to choose the questions from the list below. Each question should be copied into the appropriate spreadsheet column (Security Question 1, 2 or 3) exactly as typed below.
+
+'' Security Question 1 ''
+* What was the first car you owned?
+* Who was your first teacher?
+* What was the first album you owned?
+* Where was your first job?
+* What was your childhood nickname?
+
+'' Security Question 2 ''
+* Which of the cars you've owned has been your favorite?
+* Who was your favorite teacher?
+* What was the first concert you attended?
+* Where was your favorite job?
+* Who was your best childhood friend?
+
+'' Security Question 3 ''
+* Which of the cards you've owned has been your least favorite?
+* Where did you and your parter go on your first trip together?
+* Where was your least favorite job?
+* In which city did you mother and father meet?
+* Where were you on January 1, 2000?
+
+=== Known Bugs ===
+
+Errors are not handled gracefully. Although some errors are recoverable, if the script stops, it loses track of its progress. Edit the spreadsheet to continue.
+
+At the end of this script, Apple will send a verification email to the Apple ID. To complete verification, click the link in the message, then re-enter the account address and password.
+
+=== Download ===
+
+The files are downloadable from GitHub: https://github.com/aaronfreimark/Apple-ID-AppleScript Feel free to fork and improve.
+
+=== Acknowledgments === 
+
+This script was originally created by Enterprise iOS user [http://www.enterpriseios.com/users/Eight_Quarter_Bit Eight Quarter Bit]. [http://www.enterpriseios.com/users/Aaron_Freimark Aaron Freimark] then updated the script to work with iTunes 10.6.1 and the multiple recovery questions. Discuss on [http://www.enterpriseios.com/wiki/Batch_Apple_ID_Generator EnterpriseiOS.com]. This script or derivatives must not be sold. If you make it better, please give back to the community that brought it to you.
