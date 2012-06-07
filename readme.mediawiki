@@ -53,4 +53,4 @@ The files are downloadable from GitHub: https://github.com/aaronfreimark/Apple-I
 
 === Acknowledgments === 
 
-This script was originally created by Enterprise iOS user [http://www.enterpriseios.com/users/Eight_Quarter_Bit Eight Quarter Bit]. [http://www.enterpriseios.com/users/Aaron_Freimark Aaron Freimark] then updated the script to work with iTunes 10.6.1 and the multiple recovery questions. Discuss on [http://www.enterpriseios.com/wiki/Batch_Apple_ID_Generator EnterpriseiOS.com]. This script or derivatives must not be sold. If you make it better, please give back to the community that brought it to you.
+This script was originally created by Enterprise iOS user [http://www.enterpriseios.com/users/Eight_Quarter_Bit Greg Moore], who works for Hope Public Schools in Hope, Arkansas. [http://www.enterpriseios.com/users/Aaron_Freimark Aaron Freimark] then updated the script to work with iTunes 10.6.1 and the multiple recovery questions. Discuss on [http://www.enterpriseios.com/wiki/Batch_Apple_ID_Generator EnterpriseiOS.com]. This script or derivatives must not be sold. If you make it better, please give back to the community that brought it to you.
