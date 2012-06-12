@@ -62,7 +62,7 @@ property netDelay : 30
 property processDelay : 1
 
 --Used to store supported iTunes versions
-property supportedItunesVersions : {"10.6.1"}
+property supportedItunesVersions : {"10.6.1", "10.6.3"}
 
 (*
 	Email
@@ -194,6 +194,7 @@ on MainMagic(userDroppedFile, droppedFile)
 			
 			--CREATE IDS-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------CREATE IDS--
 			if scriptAction is not "Abort" then
+				set accountStatusSetByCurrentRun to {}
 				set currentUserNumber to 0
 				repeat with loopCounter from 1 to userCount
 					
@@ -223,8 +224,6 @@ on MainMagic(userDroppedFile, droppedFile)
 					set phoneAreaCode to item loopCounter of phoneAreaCodeColumnContents
 					set phoneNumber to item loopCounter of phoneNumberColumnContents
 					set accountStatus to item loopCounter of accountStatusColumnContents
-					
-					set accountStatusSetByCurrentRun to {}
 					
 					installIbooks() ---------------------------------------------------------------------------------------------------------------------------------------------------------------------Go to the iBooks App page location to kick off Apple ID creation with no payment information
 					
