@@ -8,7 +8,7 @@ Deploying a great quantity of iOS devices means creating a great quantity of App
 
 * '''IMPORTANT''': Apple uses a velocity check to prevent too many Apple IDs from a single IP address. You must contact your Apple business representative to request that your IP address is whitelisted for a short time.
 * Being [http://developer.apple.com/applescript/ AppleScript], this runs only on Macs.
-* [http://www.apple.com/itunes/ iTunes 10.6.1 or 10.6.3] is currently required. Future versions may break the script.
+* [http://www.apple.com/itunes/ iTunes 10.7] is currently required. Future versions may break the script.
 * [http://www.mactech.com/articles/mactech/Vol.21/21.06/UserInterfaceScripting/index.html UI Scripting] allows us to script otherwise non-scriptbale interfaces. Turn this on in System Preferences > Accessibility and check "Enable access for assistive devices."
 * Apple has [http://support.apple.com/kb/TS1728 strong password requirements]. Account creation will fail if the passwords are too weak.
 
@@ -21,25 +21,29 @@ A template CSV file is included. Fill out all columns, keeping the column header
 As of iTunes 10.6.1 Apple has required three security questions. The Batch Apple ID Creator allows you to choose the questions from the list below. Each question should be copied into the appropriate spreadsheet column (Security Question 1, 2 or 3) exactly as typed below.
 
 '' Security Question 1 ''
-* What was the first car you owned?
-* Who was your first teacher?
-* What was the first album you owned?
-* Where was your first job?
-* What was your childhood nickname?
+* What is the first name of your best friend in high school?
+* What was the name of your first pet?
+* What was the first thing you learned to cook?
+* What was the first film you saw in the theater?
+* Where did you go the first time you flew on a plane?
+* What is the last name of your favorite elementary school teacher?
 
 '' Security Question 2 ''
-* Which of the cars you've owned has been your favorite?
-* Who was your favorite teacher?
-* What was the first concert you attended?
-* Where was your favorite job?
-* Who was your best childhood friend?
+* What is your dream job?
+* What is your favorite children's book?
+* What was the model of your first car?
+* What was your childhood nickname?
+* Who was your favorite film star or character in school?
+* Who was your favorite singer or band in high school?
+
 
 '' Security Question 3 ''
-* Which of the cars you've owned has been your least favorite?
-* Where did you and your parter go on your first trip together?
-* Where was your least favorite job?
-* In which city did your mother and father meet?
-* Where were you on January 1, 2000?
+* In what city did your parents meet?
+* What was the first name of your first boss?
+* What is the name of the street where you grew up?
+* What is the name of the first beach you visited?
+* What was the first album that you purchased?
+* What is the name of your favorite sports team?
 
 === Known Bugs ===
 
