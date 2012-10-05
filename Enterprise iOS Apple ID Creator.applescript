@@ -754,7 +754,7 @@ end ClickCreateAppleIDButton
 
 on ClickContinueOnPageOne()
 	
-	set pageVerification to verifyPage("Welcome to the iTunes Store", 2, 12, netDelay) ----------Verify we are at page 1 of the Apple ID creation page
+	set pageVerification to verifyPage("Welcome to the iTunes Store", 2, 11, netDelay) ----------Verify we are at page 1 of the Apple ID creation page
 	
 	if pageVerification is "verified" then
 		
@@ -780,7 +780,7 @@ end ClickContinueOnPageOne
 
 on AgreeToTerms()
 	
-	set pageVerification to verifyPage("Terms and Conditions and Apple Privacy Policy", 2, 15, netDelay) ----------Verify we are at page 1 of the Apple ID creation page
+	set pageVerification to verifyPage("Terms and Conditions and Apple Privacy Policy", 2, 14, netDelay) ----------Verify we are at page 1 of the Apple ID creation page
 	
 	if pageVerification is "verified" then
 		tell application "System Events"
