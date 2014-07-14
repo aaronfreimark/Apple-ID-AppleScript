@@ -8,7 +8,7 @@ Deploying a great quantity of iOS devices means creating a great quantity of App
 
 * '''IMPORTANT''': Apple uses a velocity check to prevent too many Apple IDs from a single IP address. You must contact your Apple business representative to request that your IP address is whitelisted for a short time.
 * Being [http://developer.apple.com/applescript/ AppleScript], this runs only on Macs.
-* [http://www.apple.com/itunes/ iTunes 10.7] is currently required. Future versions may break the script.
+* [http://www.apple.com/itunes/ iTunes 11.3] is currently required. Future versions may break the script.
 * [http://www.mactech.com/articles/mactech/Vol.21/21.06/UserInterfaceScripting/index.html UI Scripting] allows us to script otherwise non-scriptbale interfaces. Turn this on in System Preferences > Accessibility and check "Enable access for assistive devices."
 * Apple has [http://support.apple.com/kb/TS1728 strong password requirements]. Account creation will fail if the passwords are too weak.
 
@@ -55,6 +55,6 @@ At the end of this script, Apple will send a verification email to the Apple ID.
 
 The files are downloadable from GitHub: https://github.com/aaronfreimark/Apple-ID-AppleScript Feel free to fork and improve.
 
-=== Acknowledgments === 
+=== Acknowledgments ===
 
 This script was originally created by Enterprise iOS user [http://www.enterpriseios.com/users/Eight_Quarter_Bit Greg Moore], who works for Hope Public Schools in Hope, Arkansas. [http://www.enterpriseios.com/users/Aaron_Freimark Aaron Freimark] then updated the script to work with iTunes 10.6.1 and the multiple recovery questions. Discuss on [http://www.enterpriseios.com/wiki/Batch_Apple_ID_Generator EnterpriseiOS.com]. This script or derivatives must not be sold. If you make it better, please give back to the community that brought it to you.
