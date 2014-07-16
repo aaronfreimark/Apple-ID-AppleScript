@@ -61,6 +61,9 @@ property netDelay : 30
 --Used at locations in script that will be vulnerable to slow processing. Multiplied by master delay. Tweak for slow machines. May be added to Net Delay.
 property processDelay : 1
 
+--How often should the script check that something has loaded/is ready
+property checkFrequency : .25
+
 --Used to store supported iTunes versions
 property supportedItunesVersions : {"11.2.2", "11.3"}
 
