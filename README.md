@@ -1,7 +1,7 @@
 Batch Apple ID Creator
 ----------------------
 
-### Purpose & Features
+### Purpose & Features ### {#purposeandfeatures}
 
 Deploying a great quantity of iOS devices means creating a great
 quantity of Apple IDs. This script allows automated Apple ID creation
@@ -11,7 +11,7 @@ script without actually creating the Apple ID.
 
 ### Requirements
 
--   **IMPORTANT**: Apple uses a velocity check to prevent too many Apple
+-   ***IMPORTANT***: Apple uses a velocity check to prevent too many Apple
     IDs from a single IP address. You must contact your Apple business
     representative to request that your IP address is whitelisted for a
     short time.
@@ -36,7 +36,7 @@ Batch Apple ID Creator allows you to choose the questions from the list
 below. Each question should be copied into the appropriate spreadsheet
 column (Security Question 1, 2 or 3) exactly as typed below.
 
-** Security Question 1 **
+*** Security Question 1 ***
 
 -   What is the first name of your best friend in high school?
 -   What was the name of your first pet?
@@ -45,7 +45,7 @@ column (Security Question 1, 2 or 3) exactly as typed below.
 -   Where did you go the first time you flew on a plane?
 -   What is the last name of your favorite elementary school teacher?
 
-** Security Question 2 **
+*** Security Question 2 ***
 
 -   What is your dream job?
 -   What is your favorite children's book?
@@ -54,7 +54,7 @@ column (Security Question 1, 2 or 3) exactly as typed below.
 -   Who was your favorite film star or character in school?
 -   Who was your favorite singer or band in high school?
 
-** Security Question 3 **
+*** Security Question 3 ***
 
 -   In what city did your parents meet?
 -   What was the first name of your first boss?
