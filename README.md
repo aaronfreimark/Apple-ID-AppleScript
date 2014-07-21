@@ -1,7 +1,7 @@
 Batch Apple ID Creator
 ----------------------
 
-### Purpose & Features
+### Purpose & Features ### {#purposeandfeatures}
 
 Deploying a great quantity of iOS devices means creating a great
 quantity of Apple IDs. This script allows automated Apple ID creation
