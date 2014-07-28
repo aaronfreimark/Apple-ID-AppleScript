@@ -973,8 +973,14 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion1, 
 				tell me to FillInPopup("Day", pop up button 1 of group 2 of group 13 of theForm, userBirthDay, 31)
 				tell me to FillInField("Year", text field "Year" of group 3 of group 13 of theForm, userBirthYear)
 				-----------
-				tell me to ClickThis("New releases and additions to the iTunes Store.", checkbox "New releases and additions to the iTunes Store." of group 15 of theForm)
-				tell me to ClickThis("News, special offers, and information about related products and services from Apple.", checkbox "News, special offers, and information about related products and services from Apple." of group 16 of theForm)
+				set releaseCheckbox to checkbox "New releases and additions to the iTunes Store." of group 15 of theForm
+				set newsCheckbox to checkbox "News, special offers, and information about related products and services from Apple." of group 16 of theForm
+				if value of releaseCheckbox is 1 then
+					tell me to ClickThis("New releases and additions to the iTunes Store.", releaseCheckbox)
+				end if
+				if value of newsCheckbox is 1 then
+					tell me to ClickThis("News, special offers, and information about related products and services from Apple.", newsCheckbox)
+				end if
 				-----------
 				
 				my CheckForErrors() --Check for errors before continuing to the next page
