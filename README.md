@@ -1,6 +1,8 @@
 Batch Apple ID Creator
 ----------------------
 
+[![Stories in Ready](https://badge.waffle.io/brandonusher/Apple-ID-AppleScript.svg?label=ready&title=Ready)](http://waffle.io/brandonusher/Apple-ID-AppleScript)
+
 ### Purpose & Features
 
 Deploying a great quantity of iOS devices means creating a great
