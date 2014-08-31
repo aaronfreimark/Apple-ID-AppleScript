@@ -1,2 +1,5 @@
-
-appleids-populated.csv
+*
+!appleids.csv
+!readme.md
+!Enterprise iOS Apple ID Creator.applescript
+!Canada/
