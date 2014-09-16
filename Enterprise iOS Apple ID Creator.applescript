@@ -799,7 +799,7 @@ on installIbooks()
 		-- AF 2012-05-14 Open location instead of .inetloc
 		tell application "iTunes" to open location ibooksLinkLocation
 		delay (masterDelay * processDelay)
-		set pageVerification to verifyPage("iBooks", "iBooks", 39, netDelay, true) --Looking for "iBooks", in the second element, on a page with a count of 39 elements, with a timeout of 5, and it requires the use of "group 1" for checking
+		set pageVerification to verifyPage("iBooks", "iBooks", 41, netDelay, true) --Looking for "iBooks", in the second element, on a page with a count of 41 elements, with a timeout of 5, and it requires the use of "group 1" for checking
 		
 		if pageVerification is "verified" then --Actually click the button to obtain iBooks
 			delay (masterDelay * processDelay)
