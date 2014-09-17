@@ -62,13 +62,13 @@ property netDelay : 30
 property processDelay : 1
 
 --How often should the script check that something has loaded/is ready
-property checkFrequency : 0.25
+property checkFrequency : 0.5
 
 --Used to store supported iTunes versions
-property supportedItunesVersions : {"11.2.2", "11.3"}
+property supportedItunesVersions : {"11.2.2", "11.3", "11.3.1", "11.4"}
 
 --Used for checking if iTunes is loading a page
-property itunesAccessingString : "Accessing iTunes Store…"
+property itunesAccessingString : "Accessing iTunes Store‚Ä¶"
 
 (*
 	Email
@@ -757,7 +757,7 @@ on installIbooks()
 		-- AF 2012-05-14 Open location instead of .inetloc
 		tell application "iTunes" to open location ibooksLinkLocation
 		delay (masterDelay * processDelay)
-		set pageVerification to verifyPage("iBooks", "iBooks", 39, netDelay, true) --Looking for "iBooks", in the second element, on a page with a count of 39 elements, with a timeout of 5, and it requires the use of "group 1" for checking
+		set pageVerification to verifyPage("iBooks", "iBooks", 42, netDelay, true) --Looking for "iBooks", in the second element, on a page with a count of 39 elements, with a timeout of 5, and it requires the use of "group 1" for checking
 		
 		if pageVerification is "verified" then --Actually click the button to obtain iBooks
 			delay (masterDelay * processDelay)
