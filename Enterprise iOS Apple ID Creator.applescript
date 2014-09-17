@@ -68,7 +68,7 @@ property checkFrequency : 0.5
 property supportedItunesVersions : {"11.2.2", "11.3", "11.3.1", "11.4"}
 
 --Used for checking if iTunes is loading a page
-property itunesAccessingString : "Accessing iTunes Store…"
+property itunesAccessingString : "Accessing iTunes Store‚Ä¶"
 
 (*
 	Email
@@ -969,8 +969,8 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion1, 
 				-----------
 				tell me to FillInField("Optional Rescue Email", text field "rescue@example.com" of group 11 of theForm, rescueEmail)
 				-----------
-				tell me to FillInPopup("Month", pop up button 1 of group 1 of group 13 of theForm, userBirthMonth, 12)
-				tell me to FillInPopup("Day", pop up button 1 of group 2 of group 13 of theForm, userBirthDay, 31)
+				tell me to FillInPopup("Day", pop up button 1 of group 1 of group 13 of theForm, userBirthDay, 31)
+				tell me to FillInPopup("Month", pop up button 1 of group 2 of group 13 of theForm, userBirthMonth, 12)
 				tell me to FillInField("Year", text field "Year" of group 3 of group 13 of theForm, userBirthYear)
 				-----------
 				set releaseCheckbox to checkbox "New releases and additions to the iTunes Store." of group 15 of theForm
@@ -1056,16 +1056,16 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 			-----------
 			try
 				set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-				set focused of pop up button "Select a state" of group 2 of group 10 of theForm to true
+				set focused of pop up button "Select a province" of group 2 of group 10 of theForm to true
 				keystroke addressState
 			on error
-				set errorList to errorList & "Unable to set ''State'' drop-down to " & addressState
+				set errorList to errorList & "Unable to set ''Province'' drop-down to " & addressState
 			end try
 			-----------
 			try
-				set value of text field "Zip" of group 3 of group 10 of theForm to addressZip
+				set value of text field "Postal Code" of group 3 of group 10 of theForm to addressZip
 			on error
-				set errorList to errorList & "Unable to set ''Zip Code'' field to " & addressZip
+				set errorList to errorList & "Unable to set ''Postal Code'' field to " & addressZip
 			end try
 			-----------
 			try
