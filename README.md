@@ -1,7 +1,10 @@
 Batch Apple ID Creator
 ----------------------
 
-[![Stories in Ready](https://badge.waffle.io/brandonusher/Apple-ID-AppleScript.svg?label=ready&title=Ready)](http://waffle.io/brandonusher/Apple-ID-AppleScript)
+[![Stories in Backlog](https://badge.waffle.io/brandonusher/Apple-ID-AppleScript.svg?label=backlog&title=Backlog)](http://waffle.io/brandonusher/Apple-ID-AppleScript)
+[![Stories in Ready](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=ready&title=Ready)](http://waffle.io/brandonusher/apple-id-applescript)
+[![Stories in Progress](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/brandonusher/apple-id-applescript)
+[![Stories in Done](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=done&title=Done)](http://waffle.io/brandonusher/apple-id-applescript)
 
 ### Purpose & Features
 
