@@ -5,6 +5,10 @@ Batch Apple ID Creator
 [![Stories in Ready](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=Ready&title=Ready)](http://waffle.io/brandonusher/apple-id-applescript)
 [![Stories in Progress](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/brandonusher/apple-id-applescript)
 
+If possible, please donate as I spend my free time fixing and upkeeping this script.
+
+BTC: 12afnPSYfnbzV8wgu6zv69j9eMTtV2GktC
+
 ### Purpose & Features
 
 Deploying a great quantity of iOS devices means creating a great
@@ -27,7 +31,7 @@ script without actually creating the Apple ID.
     check “Enable access for assistive devices.”
 -   Apple has [strong password requirements][]. Account creation will
     fail if the passwords are too weak.
-  
+
 ### Instructions
 
 A template CSV file is included. Fill out all columns, keeping the
