@@ -1056,16 +1056,16 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 			-----------
 			try
 				set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-				set focused of pop up button "Select a province" of group 2 of group 10 of theForm to true
+				set focused of pop up button "Select a state" of group 2 of group 10 of theForm to true
 				keystroke addressState
 			on error
-				set errorList to errorList & "Unable to set ''Province'' drop-down to " & addressState
+				set errorList to errorList & "Unable to set ''State'' drop-down to " & addressState
 			end try
 			-----------
 			try
 				set value of text field "Postal Code" of group 3 of group 10 of theForm to addressZip
 			on error
-				set errorList to errorList & "Unable to set ''Postal Code'' field to " & addressZip
+				set errorList to errorList & "Unable to set ''Zip Code'' field to " & addressZip
 			end try
 			-----------
 			try
