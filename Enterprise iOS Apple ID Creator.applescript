@@ -1,4 +1,4 @@
-(*
+﻿(*
 code to find all elements on iTunes page, for use with "verifyPage()"
 
 tell application "System Events"
@@ -32,6 +32,14 @@ end tell
 --write check for account status of "completed" or "skipped"
 
 --Global Vars
+
+
+--start localization
+--Set country code to adapt script, code according to http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+-- Set iTunesCountryCode to your country code and adjust specific parts of code between 'start localization' and 'end localization' to your needs.
+property iTunesCountryCode : ""
+--property iTunesCountryCode : "POL"
+--end localization
 
 --Used for storing a list of encountered errors. Written to by various handlers, read by checkForErrors()
 global errorList
@@ -68,7 +76,7 @@ property checkFrequency : 0.5
 property supportedItunesVersions : {"11.2.2", "11.3", "11.3.1", "11.4"}
 
 --Used for checking if iTunes is loading a page
-property itunesAccessingString : "Accessing iTunes Store�"
+property itunesAccessingString : "Accessing iTunes Store…"
 
 (*
 	Email
@@ -116,6 +124,9 @@ property phoneNumberHeaders : {"Phone Number", "Phone"}
 property rescueEmailHeaders : {"Rescue Email (Optional)", "Rescue Email"}
 property accountStatusHeaders : {"Account Status"} --Used to keep track of what acounts have been created
 
+
+--Supported descriptions of iTunes free button
+property supportedFreeButtonDescriptions : {"$0.00 Free, iBooks", "0,00 € Free, iBooks"}
 
 set userDroppedFile to false
 
@@ -616,9 +627,12 @@ on verifyPage(expectedElementString, expectedElementLocation, expectedElementCou
 		set elementCount to count every UI element of UI element 1 of scroll area 1 of splitter group 1 of splitter group 1 of window 1 of application process "iTunes"
 		
 		repeat with timeoutLoopCounter from 1 to verificationTimeout --Loop will be ended before reaching verificationTimeout if the expectedElementString is successfully located
+			
 			if timeoutLoopCounter is equal to verificationTimeout then return "unverified"
 			
 			if expectedElementCount is 0 then set expectedElementCount to elementCount --Use 0 to disable element count verification
+			
+			if expectedElementCount is not elementCount then set expectedElementCount to elementCount --Check all countable elements
 			
 			if elementCount is equal to expectedElementCount then
 				set everyTitle to {}
@@ -635,6 +649,7 @@ on verifyPage(expectedElementString, expectedElementLocation, expectedElementCou
 					set elementString to title of elementProperties
 					--set elementString to (text items 1 through (count of text items in expectedElementString) of elementString) as string
 				end try
+				
 				if elementString is equal to expectedElementString then
 					return "verified"
 				end if
@@ -764,11 +779,23 @@ on installIbooks()
 			tell application "System Events"
 				try
 					set freeButton to button 1 of group 2 of UI element 1 of scroll area 1 of splitter group 1 of splitter group 1 of window "iTunes" of application process "iTunes"
-					if description of freeButton is "$0.00 Free, iBooks" then
+					
+					-- check if free button is supported
+					set freeButtonDescription to description of freeButton
+					set freeButtonDescriptionIsSupported to false
+					repeat with freeButtonCheckLoopCounter from 1 to (count of items in supportedFreeButtonDescriptions)
+						if item freeButtonCheckLoopCounter of supportedFreeButtonDescriptions is equal to freeButtonDescription then
+							set freeButtonDescriptionIsSupported to true
+							exit repeat
+						end if
+					end repeat
+					
+					if freeButtonDescriptionIsSupported is true then
 						click freeButton
 					else
-						set errorList to errorList & "Unable to locate install app button by its description."
+						set errorList to errorList & "Unable to locate supported free button by its description."
 					end if
+					
 				on error
 					set errorList to errorList & "Unable to locate install app button by its description."
 				end try
@@ -806,7 +833,19 @@ end ClickCreateAppleIDButton
 
 on ClickContinueOnPageOne()
 	delay (masterDelay * processDelay)
-	set pageVerification to verifyPage("Welcome to the iTunes Store", "Welcome to the iTunes Store", 12, netDelay, false) ----------Verify we are at page 1 of the Apple ID creation page
+	
+	--start localization
+	set curExpectedElementString to "Welcome to the iTunes Store"
+	set curExpectedElementLocation to "Welcome to the iTunes Store"
+	
+	if iTunesCountryCode is "POL" then
+		set curExpectedElementString to "Witamy w sklepie iTunes Store"
+		set curExpectedElementLocation to "Witamy w sklepie iTunes Store"
+	end if
+	--end localization
+	
+	set pageVerification to verifyPage(curExpectedElementString, curExpectedElementLocation, 12, netDelay, false) ----------Verify we are at page 1 of the Apple ID creation page
+	
 	if pageVerification is "verified" then
 		
 		try
@@ -832,21 +871,45 @@ end ClickContinueOnPageOne
 
 on AgreeToTerms()
 	delay (masterDelay * processDelay)
-	set pageVerification to verifyPage("Terms and Conditions and Apple Privacy Policy", "Terms and Conditions and Apple Privacy Policy", 16, netDelay, false) ----------Verify we are at page 1 of the Apple ID creation page
+	
+	--start localization
+	set curExpectedElementString to "Terms and Conditions and Apple Privacy Policy"
+	set curExpectedElementLocation to "Terms and Conditions and Apple Privacy Policy"
+	
+	if iTunesCountryCode is "POL" then
+		set curExpectedElementString to "Warunki oraz Ochrona prywatności firmy Apple"
+		set curExpectedElementLocation to "Warunki oraz Ochrona prywatności firmy Apple"
+	end if
+	--end localization
+	
+	set pageVerification to verifyPage(curExpectedElementString, curExpectedElementLocation, 16, netDelay, false) ----------Verify we are at page 1 of the Apple ID creation page
+	
 	if pageVerification is "verified" then
 		tell application "System Events"
 			
 			--Check box
+			
+			--start localization
+			set curCheckBox to "I have read and agree to these terms and conditions."
+			set curCheckBoxNum to 4
+			
+			if iTunesCountryCode is "POL" then
+				set curCheckBox to "Aby móc używać tej usługi, zapoznaj się z przedstawionymi warunkami i zasadami oraz wyraź na nie zgodę."
+				set curCheckBoxNum to 5
+			end if
+			--end localization
+			
 			try
-				set agreeCheckbox to checkbox "I have read and agree to these terms and conditions." of group 4 of UI element 1 of scroll area 1 of splitter group 1 of splitter group 1 of window 1 of application process "iTunes"
+				set agreeCheckbox to checkbox curCheckBox of group curCheckBoxNum of UI element 1 of scroll area 1 of splitter group 1 of splitter group 1 of window 1 of application process "iTunes"
 				set buttonVerification to title of agreeCheckbox
-				if buttonVerification is "I have read and agree to these terms and conditions." then
+				
+				if buttonVerification is curCheckBox then
 					click agreeCheckbox
 				else
-					set errorList to errorList & "Unable to locate and check box ''I have read and agree to these terms and conditions.''"
+					set errorList to errorList & "Unable to locate and check box  #1 ''I have read and agree to these terms and conditions.''"
 				end if
 			on error
-				set errorList to errorList & "Unable to locate and check box ''I have read and agree to these terms and conditions.''"
+				set errorList to errorList & "Unable to locate and check box #2 ''I have read and agree to these terms and conditions.''"
 			end try
 			
 			--delay (masterDelay * processDelay) --We need to pause a second for System Events to realize we have checked the box
@@ -969,8 +1032,17 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion1, 
 				-----------
 				tell me to FillInField("Optional Rescue Email", text field "rescue@example.com" of group 11 of theForm, rescueEmail)
 				-----------
-				tell me to FillInPopup("Month", pop up button 1 of group 1 of group 13 of theForm, userBirthMonth, 12)
-				tell me to FillInPopup("Day", pop up button 1 of group 2 of group 13 of theForm, userBirthDay, 31)
+				--start localization
+				set curMonthPos to 1
+				set curDayPos to 2
+				if iTunesCountryCode is "POL" then
+					set curMonthPos to 2
+					set curDayPos to 1
+				end if
+				--end localization
+				
+				tell me to FillInPopup("Month", pop up button 1 of group curMonthPos of group 13 of theForm, userBirthMonth, 12)
+				tell me to FillInPopup("Day", pop up button 1 of group curDayPos of group 13 of theForm, userBirthDay, 31)
 				tell me to FillInField("Year", text field "Year" of group 3 of group 13 of theForm, userBirthYear)
 				-----------
 				set releaseCheckbox to checkbox "New releases and additions to the iTunes Store." of group 15 of theForm
@@ -1048,22 +1120,48 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 				set errorList to errorList & "Unable to set ''Street Address'' field to " & addressStreet
 			end try
 			-----------
+			--start localization
+			set curCityFieldName to "City"
+			set curCityFieldPos to 1
+			if iTunesCountryCode is "POL" then
+				set curCityFieldName to "Town"
+				set curCityFieldPos to 2
+			end if
+			--end localization
 			try
-				set value of text field "City" of group 1 of group 10 of theForm to addressCity
+				set value of text field curCityFieldName of group curCityFieldPos of group 10 of theForm to addressCity
 			on error
 				set errorList to errorList & "Unable to set ''City'' field to " & addressCity
 			end try
 			-----------
-			try
-				set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
-				set focused of pop up button "Select a province" of group 2 of group 10 of theForm to true
-				keystroke addressState
-			on error
-				set errorList to errorList & "Unable to set ''Province'' drop-down to " & addressState
-			end try
+			--start localization
+			set enableProvince to true
+			if iTunesCountryCode is "POL" then
+				set enableProvince to false
+			end if
+			--end localization
+			
+			if enableProvince is true then
+				try
+					set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
+					set focused of pop up button "Select a province" of group 2 of group 10 of theForm to true
+					keystroke addressState
+				on error
+					set errorList to errorList & "Unable to set ''Province'' drop-down to " & addressState
+				end try
+			end if
 			-----------
+			--start localization
+			set curPostalCodeFieldName to "Postal Code"
+			set curPostalCodeFieldPos to 3
+			if iTunesCountryCode is "POL" then
+				set curPostalCodeFieldName to "Postcode"
+				set curPostalCodeFieldPos to 1
+			end if
+			--end localization
+			
 			try
-				set value of text field "Postal Code" of group 3 of group 10 of theForm to addressZip
+				set value of text field curPostalCodeFieldName of group curPostalCodeFieldPos of group 10 of theForm to addressZip
 			on error
 				set errorList to errorList & "Unable to set ''Postal Code'' field to " & addressZip
 			end try
