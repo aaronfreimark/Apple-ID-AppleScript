@@ -1134,6 +1134,7 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 				set errorList to errorList & "Unable to set ''City'' field to " & addressCity
 			end try
 			-----------
+<<<<<<< HEAD
 			--start localization
 			set enableProvince to true
 			if iTunesCountryCode is "POL" then
@@ -1150,6 +1151,15 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 					set errorList to errorList & "Unable to set ''Province'' drop-down to " & addressState
 				end try
 			end if
+=======
+			try
+				set frontmost of application process "iTunes" to true --Verify that iTunes is the front window before performking keystroke event
+				set focused of pop up button "Select a state" of group 2 of group 10 of theForm to true
+				keystroke addressState
+			on error
+				set errorList to errorList & "Unable to set ''State'' drop-down to " & addressState
+			end try
+>>>>>>> 91881e637b9cb21cf05517e451ca75f021bffd67
 			-----------
 			--start localization
 			set curPostalCodeFieldName to "Postal Code"
@@ -1163,7 +1173,7 @@ on ProvidePaymentDetails(userFirstName, userLastName, addressStreet, addressCity
 			try
 				set value of text field curPostalCodeFieldName of group curPostalCodeFieldPos of group 10 of theForm to addressZip
 			on error
-				set errorList to errorList & "Unable to set ''Postal Code'' field to " & addressZip
+				set errorList to errorList & "Unable to set ''Zip Code'' field to " & addressZip
 			end try
 			-----------
 			try
