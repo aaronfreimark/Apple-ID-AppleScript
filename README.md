@@ -45,7 +45,7 @@ A template CSV file is included. Create csv file. Then run the script.
 * don't leave empty lines,
 * use MS Excel or Numbers to create file,
 * don't include the "- " in front of the security questions,
-* left last column blank,
+* leave last column blank,
 * for the state just use the two letter initial, ie "NY" not "NY - New York" as its listed in iTunes,
 * for the month in birth date use month names with capital first letter, ie "January" for january,
 
