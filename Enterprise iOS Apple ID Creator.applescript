@@ -1041,6 +1041,9 @@ on ProvideAppleIdDetails(appleIdEmail, appleIdPassword, appleIdSecretQuestion1, 
 				--start localization
 				set curMonthPos to 1
 				set curDayPos to 2
+				if iTunesCountryCode is "POL" then
+					set curMonthPos to 2
+					set curDayPos to 1
 				if iTunesCountryCode is "FRA" then
 					set curMonthPos to 2
 					set curDayPos to 1
