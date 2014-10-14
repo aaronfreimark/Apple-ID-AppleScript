@@ -34,8 +34,21 @@ script without actually creating the Apple ID.
 
 ### Instructions
 
-A template CSV file is included. Fill out all columns, keeping the
-column headers, and save as CSV. Then run the script.
+A template CSV file is included. Create csv file. Then run the script.
+
+
+#### CSV file tips
+
+* keep the column headers,
+* fill out all columns, 
+* use comma as a column separator,
+* don't leave empty lines,
+* use MS Excel or Numbers to create file,
+* don't include the "- " in front of the security questions,
+* leave last column blank,
+* for the state just use the two letter initial, ie "NY" not "NY - New York" as its listed in iTunes,
+* for the month in birth date use month names with capital first letter, ie "January" for january,
+
 
 ### Security Questions
 

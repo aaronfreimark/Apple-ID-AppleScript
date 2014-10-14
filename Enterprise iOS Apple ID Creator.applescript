@@ -531,7 +531,12 @@ on getColumnContents(columnToGet, fileContents)
 	set columnContents to {}
 	repeat with loopCounter from 1 to (count of items of fileContents)
 		set columnContents to columnContents & 1
-		set item loopCounter of columnContents to item columnToGet of item loopCounter of fileContents
+		try
+			set item loopCounter of columnContents to item columnToGet of item loopCounter of fileContents
+		on error theError
+			display alert "Data row parsing error. Remove empty or invalid row at line: " & loopCounter buttons ("Stop script and edit csv manually") default button 1
+			error number -128
+		end try
 	end repeat
 	return columnContents
 end getColumnContents
