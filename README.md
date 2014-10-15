@@ -1,7 +1,13 @@
 Batch Apple ID Creator
 ----------------------
 
-[![Stories in Ready](https://badge.waffle.io/brandonusher/Apple-ID-AppleScript.svg?label=ready&title=Ready)](http://waffle.io/brandonusher/Apple-ID-AppleScript)
+[![Stories in Backlog](https://badge.waffle.io/brandonusher/Apple-ID-AppleScript.svg?label=Backlog&title=Backlog)](http://waffle.io/brandonusher/Apple-ID-AppleScript)
+[![Stories in Ready](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=Ready&title=Ready)](http://waffle.io/brandonusher/apple-id-applescript)
+[![Stories in Progress](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/brandonusher/apple-id-applescript)
+
+If possible, please donate as I spend my free time fixing and upkeeping this script.
+
+BTC: 12afnPSYfnbzV8wgu6zv69j9eMTtV2GktC
 
 ### Purpose & Features
 
@@ -25,11 +31,24 @@ script without actually creating the Apple ID.
     check “Enable access for assistive devices.”
 -   Apple has [strong password requirements][]. Account creation will
     fail if the passwords are too weak.
-  
+
 ### Instructions
 
-A template CSV file is included. Fill out all columns, keeping the
-column headers, and save as CSV. Then run the script.
+A template CSV file is included. Create csv file. Then run the script.
+
+
+#### CSV file tips
+
+* keep the column headers,
+* fill out all columns, 
+* use comma as a column separator,
+* don't leave empty lines,
+* use MS Excel or Numbers to create file,
+* don't include the "- " in front of the security questions,
+* leave last column blank,
+* for the state just use the two letter initial, ie "NY" not "NY - New York" as its listed in iTunes,
+* for the month in birth date use month names with capital first letter, ie "January" for january,
+
 
 ### Security Questions
 
