@@ -24,7 +24,7 @@ script without actually creating the Apple ID.
     representative to request that your IP address is whitelisted for a
     short time.
 -   Being [AppleScript][], this runs only on Macs.
--   [iTunes 11.2.2][] is currently required. Future versions may break the
+-   [iTunes 11.2.3][] is currently required. Future versions may break the
     script.
 -   [UI Scripting][] allows us to script otherwise non-scriptbale
     interfaces. Turn this on in System Preferences \> Accessibility and
@@ -55,7 +55,7 @@ A template CSV file is included. Create csv file. Then run the script.
 As of iTunes 10.6.1 Apple has required three security questions. The
 Batch Apple ID Creator allows you to choose the questions from the list
 below. Each question should be copied into the appropriate spreadsheet
-column (Security Question 1, 2 or 3) exactly as typed below.
+column (Security Question 1, 2 or 3 ,4,5,6,7) exactly as typed below.
 
 #### Security Question 1
 
