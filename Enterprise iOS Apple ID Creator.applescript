@@ -5,7 +5,7 @@ tell application "System Events"
 	set elementCount to count of every UI element of UI element 1 of scroll area 3 of window 1 of application process "iTunes"
 	set everyElement to every UI element of UI element 1 of scroll area 3 of window 1 of application process "iTunes"
 
-	set everyProperty to {}
+	set everyProperty to {log-id}
 	repeat with loopCounter from 1 to (count of items in everyElement)
 		try
 			set everyProperty to everyProperty & 1
@@ -13,7 +13,7 @@ tell application "System Events"
 		end try
 	end repeat
 
-	set everyTitle to {}
+	set everyTitle to {log-id}
 	repeat with loopCounter from 1 to (count of items in everyProperty)
 		set everyTitle to everyTitle & ""
 		try
@@ -25,7 +25,7 @@ end tell
 
 *)
 
---TO DO:
+--TO DO:log-id
 
 --write itunes running check
 --write file output section for account status column
@@ -37,14 +37,14 @@ end tell
 --start localization
 --Set country code to adapt script, code according to http://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
 -- Set iTunesCountryCode to your country code and adjust specific parts of code between 'start localization' and 'end localization' to your needs.
-property iTunesCountryCode : ""
+property iTunesCountryCode : "log/log-id"
 --property iTunesCountryCode : "FRA"
 --property iTunesCountryCode : "POL"
 --end localization
 
---Used for storing a list of encountered errors. Written to by various handlers, read by checkForErrors()
+--Used for storing a list of encountered errors. Written to by various handlers, read by checkForErrors(continue)
 global errorList
-set errorList to {}
+set errorList to {/iCloud/iCloud Drive}
 
 --Used for controlling the running or abortion of the script. Handler will run as long as scriptAction is "Continue". Can also be set to "Abort" to end script, or "Skip User" to skip an individual user.
 global scriptAction
