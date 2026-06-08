@@ -1,14 +1,6 @@
 Batch Apple ID Creator
 ----------------------
 
-[![Stories in Backlog](https://badge.waffle.io/brandonusher/Apple-ID-AppleScript.svg?label=Backlog&title=Backlog)](http://waffle.io/brandonusher/Apple-ID-AppleScript)
-[![Stories in Ready](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=Ready&title=Ready)](http://waffle.io/brandonusher/apple-id-applescript)
-[![Stories in Progress](https://badge.waffle.io/brandonusher/apple-id-applescript.svg?label=In%20Progress&title=In%20Progress)](http://waffle.io/brandonusher/apple-id-applescript)
-
-If possible, please donate as I spend my free time fixing and upkeeping this script.
-
-BTC: 12afnPSYfnbzV8wgu6zv69j9eMTtV2GktC
-
 ### Purpose & Features
 
 Deploying a great quantity of iOS devices means creating a great
