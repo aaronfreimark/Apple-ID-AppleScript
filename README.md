@@ -1,3 +1,7 @@
+*Critical: this repo stopped working many years ago, and likely will never work again. Sorry!*
+
+
+
 Batch Apple ID Creator
 ----------------------
 
